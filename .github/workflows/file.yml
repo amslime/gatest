@@ -11,4 +11,7 @@ jobs:
           MY_VAR: TODO
       - name: "w2"
         run: |
+          echo "hello" > a.txt
+      - name: "w3"
+        run: |
           file a.txt
