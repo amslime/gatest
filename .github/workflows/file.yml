@@ -1,0 +1,13 @@
+name: test file command
+on: [push]
+jobs:
+  windows:
+    name: Test file on windows
+    runs-on: windows-latest
+    steps:
+      - name: "amslime"
+        uses: actions/checkout@v2
+        env:
+          MY_VAR: TODO
+        run: |
+          file a.txt
