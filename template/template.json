@@ -1,0 +1,52 @@
+{
+    "version": "1.0",
+    "description": "TestTemplate",
+    "homepage": "???",
+    "license": "MIT",
+    "plan": {
+        "common": {
+            "build": {
+
+            }
+        },
+        "windows": {
+            "build": {
+                "resources": [
+                    {
+                        "name": "aliyun-cli-windows-3.0.112-amd64.zip",
+                        "url": "https://github.com/aliyun/aliyun-cli/releases/download/v3.0.112/aliyun-cli-windows-3.0.112-amd64.zip",
+                        "hash": "50686a7ce1c91f0fe6fbfece02ef9479b8f8ecbde106aa7e43c96caebac17b01"
+                    }
+                ],
+                "scripts": [
+                    "ls"
+
+                ],
+                "bin": "a.exe"
+            },
+            "action": {
+                "test": {
+                    "resources": [
+                    ],
+                    "scripts": [
+
+                    ]
+                },
+                "store": {
+                    "resources": [
+                    ],
+                    "scripts": [                 
+                    ]
+                }
+            }
+        },
+        "linux": {
+
+        },
+        "darwin": {
+            
+        }
+    }
+
+
+}
