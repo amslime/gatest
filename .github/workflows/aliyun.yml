@@ -34,7 +34,7 @@ jobs:
           curl -LJo aliyun.tgz https://github.com/aliyun/aliyun-cli/releases/download/v3.0.112/aliyun-cli-linux-3.0.112-amd64.tgz
       - name: sha256
         run: |
-          openssl sha256 aliyun.tgz | grep "af83e0dc40b012f7c3782bd92ea0508da91cb5905ae18f04669a522bd725f2e0"
+          openssl sha256 aliyun.tgz | grep "af83e0dc40b012f7c3782bd92ea0508da91cb5905ae18f04669a522bd725f2e0-"
       - name: unzip
         run: |
           tar zxvf aliyun.tgz && ls
