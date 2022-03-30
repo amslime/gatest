@@ -17,10 +17,10 @@ jobs:
           Get-FileHash aliyun.zip | Select-String "50686a7ce1c91f0fe6fbfece02ef9479b8f8ecbde106aa7e43c96caebac17b01"
       - name: unzip
         run: |
-          unzip aliyun.zip && dir
+         Expand-Archive -Path aliyun.zip && dir && cd aliyun
       - name: test
         run: |
-          aliyun --help | Select-String "Alibaba Cloud Command Line Interface Version"
+          aliyun.exe --help | Select-String "Alibaba Cloud Command Line Interface Version"
   linux:
     name: test
     runs-on: ubuntu-latest
