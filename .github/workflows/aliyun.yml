@@ -21,4 +21,24 @@ jobs:
       - name: test
         run: |
           ./aliyun --help | grep "Alibaba Cloud Command Line Interface Version"
+  windows:
+    name: test
+    runs-on: windows-latest
+    steps:
+      - name: prepare
+        uses: actions/checkout@v2
+        env:
+          MY_VAR: TODO
+      - name: curl
+        run: |
+          curl -LJo aliyun.zip https://github.com/aliyun/aliyun-cli/releases/download/v3.0.112/aliyun-cli-windows-3.0.112-amd64.tgz
+      - name: sha256
+        run: |
+          openssl sha256 aliyun.zip | grep "50686a7ce1c91f0fe6fbfece02ef9479b8f8ecbde106aa7e43c96caebac17b01"
+      - name: unzip
+        run: |
+          unzip aliyun.zip && ls
+      - name: test
+        run: |
+          aliyun --help | grep "Alibaba Cloud Command Line Interface Version"
   
