@@ -5,15 +5,14 @@ jobs:
     name: test
     runs-on: macos-latest
     steps:
-      - name: "prepare"
+      - name: prepare
         uses: actions/checkout@v2
         env:
           MY_VAR: TODO
-      - name: wget
-        uses: wei/wget@v1
-        with:
-          args: -O aliyun.tgz https://github.com/aliyun/aliyun-cli/releases/download/v3.0.112/aliyun-cli-macosx-3.0.112-amd64.tgz
-      - name: "checkFolder"
+      - name: curl
+        run:
+          curl -o aliyun.tgz https://github.com/aliyun/aliyun-cli/releases/download/v3.0.112/aliyun-cli-macosx-3.0.112-amd64.tgz
+      - name: checkFolder
         run: |
           tar -xzvf aliyun.tgz && ls -alh
       
