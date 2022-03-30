@@ -10,14 +10,15 @@ jobs:
         env:
           MY_VAR: TODO
       - name: curl
-        run:
+        run: |
           curl -LJo aliyun.tgz https://github.com/aliyun/aliyun-cli/releases/download/v3.0.112/aliyun-cli-macosx-3.0.112-amd64.tgz
       - name: sha256
-        run:
+        run: |
           openssl sha256 aliyun.tgz | grep "7f1d53beccbcf7da24cd0db17fa65e81a0bdeda0f719d9df0448dde7634d3d50"
       - name: unzip
         run: |
           tar zxvf aliyun.tgz && ls
       - name: test
+        run: |
           ./aliyun --help | grep "Alibaba Cloud Command Line Interface Version"
   
