@@ -14,7 +14,7 @@ jobs:
           curl -LJo aliyun.zip https://github.com/aliyun/aliyun-cli/releases/download/v3.0.112/aliyun-cli-windows-3.0.112-amd64.zip
       - name: sha256
         run: |
-          Get-FileHash aliyun.zip | Select-String "50686a7ce1c91f0fe6fbfece02ef9479b8f8ecbde106aa7e43c96caebac17b01"
+          Get-FileHash '.\aliyun.zip' -Algorithm SHA256 
       - name: unzip
         run: |
           Expand-Archive -Path '.\aliyun.zip' -DestinationPath '.\'
