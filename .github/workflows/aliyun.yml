@@ -11,8 +11,7 @@ jobs:
           MY_VAR: TODO
       - name: curl
         run:
-          curl -o aliyun.tgz https://github.com/aliyun/aliyun-cli/releases/download/v3.0.112/aliyun-cli-macosx-3.0.112-amd64.tgz
+          curl -LJo aliyun.tgz https://github.com/aliyun/aliyun-cli/releases/download/v3.0.112/aliyun-cli-macosx-3.0.112-amd64.tgz
       - name: checkFolder
         run: |
-          tar -czvf aliyun.tgz ./ && ls -alh
-      
+          tar zxvf aliyun.tgz && ./aliyun
