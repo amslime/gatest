@@ -14,5 +14,5 @@ jobs:
           curl -o aliyun.tgz https://github.com/aliyun/aliyun-cli/releases/download/v3.0.112/aliyun-cli-macosx-3.0.112-amd64.tgz
       - name: checkFolder
         run: |
-          tar -xzvf aliyun.tgz && ls -alh
+          tar -czvf aliyun.tgz && ls -alh
       
