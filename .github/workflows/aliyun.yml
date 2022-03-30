@@ -1,6 +1,46 @@
 name: aliyun
 on: [push]
 jobs:
+  windows:
+    name: test
+    runs-on: windows-latest
+    steps:
+      - name: prepare
+        uses: actions/checkout@v2
+        env:
+          MY_VAR: TODO
+      - name: curl
+        run: |
+          curl -LJo aliyun.zip https://github.com/aliyun/aliyun-cli/releases/download/v3.0.112/aliyun-cli-windows-3.0.112-amd64.tgz
+      - name: sha256
+        run: |
+          Get-FileHash aliyun.zip | Select-String "50686a7ce1c91f0fe6fbfece02ef9479b8f8ecbde106aa7e43c96caebac17b01"
+      - name: unzip
+        run: |
+          unzip aliyun.zip && dir
+      - name: test
+        run: |
+          aliyun --help | Select-String "Alibaba Cloud Command Line Interface Version"
+  linux:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: prepare
+        uses: actions/checkout@v2
+        env:
+          MY_VAR: TODO
+      - name: curl
+        run: |
+          curl -LJo aliyun.tgz https://github.com/aliyun/aliyun-cli/releases/download/v3.0.112/aliyun-cli-linux-3.0.112-amd64.tgz
+      - name: sha256
+        run: |
+          openssl sha256 aliyun.tgz | grep "af83e0dc40b012f7c3782bd92ea0508da91cb5905ae18f04669a522bd725f2e0"
+      - name: unzip
+        run: |
+          tar zxvf aliyun.tgz && ls
+      - name: test
+        run: |
+          ./aliyun --help | grep "Alibaba Cloud Command Line Interface Version"
   macos:
     name: test
     runs-on: macos-latest
@@ -21,24 +61,3 @@ jobs:
       - name: test
         run: |
           ./aliyun --help | grep "Alibaba Cloud Command Line Interface Version"
-  windows:
-    name: test
-    runs-on: windows-latest
-    steps:
-      - name: prepare
-        uses: actions/checkout@v2
-        env:
-          MY_VAR: TODO
-      - name: curl
-        run: |
-          curl -LJo aliyun.zip https://github.com/aliyun/aliyun-cli/releases/download/v3.0.112/aliyun-cli-windows-3.0.112-amd64.tgz
-      - name: sha256
-        run: |
-          openssl sha256 aliyun.zip | grep "50686a7ce1c91f0fe6fbfece02ef9479b8f8ecbde106aa7e43c96caebac17b01"
-      - name: unzip
-        run: |
-          unzip aliyun.zip && ls
-      - name: test
-        run: |
-          aliyun --help | grep "Alibaba Cloud Command Line Interface Version"
-  
