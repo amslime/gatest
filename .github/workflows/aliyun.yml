@@ -1,35 +1,7 @@
 name: aliyun
-on: [push]
+'on': '[push]'
 jobs:
-  windows:
-    name: test
-    runs-on: windows-latest
-    steps:
-      - name: prepare
-        uses: actions/checkout@v2
-        env:
-          MY_VAR: TODO
-      - name: curl
-        run: |
-          curl -LJo aliyun.zip https://github.com/aliyun/aliyun-cli/releases/download/v3.0.112/aliyun-cli-windows-3.0.112-amd64.zip
-      - name: sha256
-        run: |
-          Get-FileHash '.\aliyun.zip' -Algorithm SHA256 
-      - name: unzip
-        run: |
-          Expand-Archive -Path '.\aliyun.zip' -DestinationPath '.\'
-      - name: test
-        run: |
-          aliyun.exe --help | Select-String "Alibaba Cloud Command Line Interface Version"
-      - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: aliyun.zip
-          asset_name: aliyun-windows.zip
-          tag: ${{ github.ref }}
-          overwrite: true
-  linux:
+  build-common:
     name: test
     runs-on: ubuntu-latest
     steps:
@@ -39,49 +11,4 @@ jobs:
           MY_VAR: TODO
       - name: curl
         run: |
-          curl -LJo aliyun.tgz https://github.com/aliyun/aliyun-cli/releases/download/v3.0.112/aliyun-cli-linux-3.0.112-amd64.tgz
-      - name: sha256
-        run: |
-          openssl sha256 aliyun.tgz | grep "af83e0dc40b012f7c3782bd92ea0508da91cb5905ae18f04669a522bd725f2e0"
-      - name: unzip
-        run: |
-          tar zxvf aliyun.tgz && ls
-      - name: test
-        run: |
-          ./aliyun --help | grep "Alibaba Cloud Command Line Interface Version"
-      - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: aliyun.tgz
-          asset_name: aliyun-linux.tgz
-          tag: ${{ github.ref }}
-          overwrite: true
-  macos:
-    name: test
-    runs-on: macos-latest
-    steps:
-      - name: prepare
-        uses: actions/checkout@v2
-        env:
-          MY_VAR: TODO
-      - name: curl
-        run: |
-          curl -LJo aliyun.tgz https://github.com/aliyun/aliyun-cli/releases/download/v3.0.112/aliyun-cli-macosx-3.0.112-amd64.tgz
-      - name: sha256
-        run: |
-          openssl sha256 aliyun.tgz | grep "7f1d53beccbcf7da24cd0db17fa65e81a0bdeda0f719d9df0448dde7634d3d50"
-      - name: unzip
-        run: |
-          tar zxvf aliyun.tgz && ls
-      - name: test
-        run: |
-          ./aliyun --help | grep "Alibaba Cloud Command Line Interface Version"
-      - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: aliyun.tgz
-          asset_name: aliyun-macosx.tgz
-          tag: ${{ github.ref }}
-          overwrite: true
+          curl -LJo aliyun.zip https://github.com/aliyun/aliyun-cli/releases/download/v3.0.112/aliyun-cli-windows-3.0.112-amd64.zip
