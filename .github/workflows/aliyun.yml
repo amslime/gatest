@@ -3,13 +3,20 @@ name: aliyun
   - push
 jobs:
   build-common:
-    name: test
+    name: build-common
     runs-on: ubuntu-latest
     steps:
       - name: prepare
         uses: actions/checkout@v2
-        env:
-          MY_VAR: TODO
-      - name: curl
-        run: |
-          curl -LJo aliyun.zip https://github.com/aliyun/aliyun-cli/releases/download/v3.0.112/aliyun-cli-windows-3.0.112-amd64.zip
+      - name: Download aliyun-cli-windows-3.0.115-amd64.tgz
+        run: >-
+          curl -Ljo aliyun-cli-windows-3.0.115-amd64.tgz
+          https://github.com/aliyun/aliyun-cli/releases/download/v3.0.115/aliyun-cli-windows-3.0.115-amd64.tgz
+      - name: Download aliyun-cli-macosx-3.0.115-amd64.tgz
+        run: >-
+          curl -LjO 
+          https://github.com/aliyun/aliyun-cli/releases/download/v3.0.115/aliyun-cli-macosx-3.0.115-amd64.tgz
+      - name: Download aliyun-cli-windows-3.0.115-amd64.zip
+        run: >-
+          curl -LjO 
+          https://github.com/aliyun/aliyun-cli/releases/download/v3.0.115/aliyun-cli-windows-3.0.115-amd64.zip
