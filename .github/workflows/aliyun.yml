@@ -20,3 +20,29 @@ jobs:
         run: >-
           curl -LjO 
           https://github.com/aliyun/aliyun-cli/releases/download/v3.0.115/aliyun-cli-windows-3.0.115-amd64.zip
+      - name: ls
+        run: ls -alh
+      - name: Upload aliyun-cli-windows-3.0.115-amd64.tgz
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: aliyun-cli-windows-3.0.115-amd64.tgz
+          asset_name: aliyun-cli-windows-3.0.115-amd64.tgz
+          tag: aliyun
+          overwrite: true
+      - name: Upload aliyun-cli-macosx-3.0.115-amd64.tgz
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: aliyun-cli-macosx-3.0.115-amd64.tgz
+          asset_name: aliyun-cli-macosx-3.0.115-amd64.tgz
+          tag: aliyun
+          overwrite: true
+      - name: Upload aliyun-cli-windows-3.0.115-amd64.zip
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: aliyun-cli-windows-3.0.115-amd64.zip
+          asset_name: aliyun-cli-windows-3.0.115-amd64.zip
+          tag: aliyun
+          overwrite: true
